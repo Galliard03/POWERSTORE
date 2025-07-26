@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل / إنشاء حساب</title>
+  <style>
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 380px;
+      background-color: #ffffff;
+      border: 2px solid #dedede;
+      padding: 35px 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+      font-size: 26px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #0077ff;
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #0077ff;
+      color: white;
+      font-size: 17px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #005fcc;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .toggle-link a {
+      color: #0077ff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .toggle-link a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      text-align: center;
+      font-size: 14px;
+      color: #28a745;
+      min-height: 22px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form id="loginForm" onsubmit="event.preventDefault(); loginUser();">
+      <h2>تسجيل الدخول</h2>
+      <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required />
+      <input type="password" id="loginPassword" placeholder="كلمة المرور" required />
+      <button class="btn" type="submit">دخول</button>
+      <div class="toggle-link">لا تملك حسابًا؟ <a onclick="toggleForms()">إنشاء حساب</a></div>
+      <div class="message" id="loginMessage"></div>
+    </form>
+
+    <form id="registerForm" style="display: none;" onsubmit="event.preventDefault(); registerUser();">
+      <h2>فتح حساب جديد</h2>
+      <input type="text" id="registerName" placeholder="الاسم الكامل" required />
+      <input type="email" id="registerEmail" placeholder="البريد الإلكتروني" required />
+      <input type="password" id="registerPassword" placeholder="كلمة المرور" required />
+      <button class="btn" type="submit">تسجيل</button>
+      <div class="toggle-link">لديك حساب؟ <a onclick="toggleForms()">تسجيل الدخول</a></div>
+      <div class="message" id="registerMessage"></div>
+    </form>
+  </div>
+
+  <script>
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    function toggleForms() {
+      const login = document.getElementById('loginForm');
+      const register = document.getElementById('registerForm');
+      login.style.display = login.style.display === 'none' ? 'block' : 'none';
+      register.style.display = register.style.display === 'none' ? 'block' : 'none';
+      clearMessages();
+    }
+
+    function clearMessages() {
+      document.getElementById('loginMessage').innerText = '';
+      document.getElementById('registerMessage').innerText = '';
+    }
+
+    function registerUser() {
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+
+      if (users.some(u => u.email === email)) {
+        document.getElementById('registerMessage').innerText = 'هذا البريد مستخدم من قبل.';
+        return;
+      }
+
+      users.push({ name, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+      document.getElementById('registerMessage').innerText = 'تم فتح الحساب بنجاح.';
+      document.getElementById('registerForm').reset();
+    }
+
+    function loginUser() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        document.getElementById('loginMessage').innerText = 'بيانات الدخول غير صحيحة.';
+        return;
+      }
+
+      window.location.href = "store.html";
+    }
+  </script>
+</body>
+</html>

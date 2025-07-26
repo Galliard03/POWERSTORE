@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>متجر أنمي باور</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 20px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .logo a {
+      text-decoration: none;
+      font-size: 28px;
+      color: #0077cc;
+      font-weight: bold;
+    }
+
+    nav {
+      background-color: #0077cc;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 12px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #005fa3;
+    }
+
+    .add-button {
+      background-color: #00b894;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      margin: 30px auto 0;
+      cursor: pointer;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-button:hover {
+      background-color: #019271;
+    }
+
+    .payys {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .payy-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .payy-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .payy-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .payy-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .payy-info h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #0077cc;
+    }
+
+    .payy-info p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #2d3436;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .payy-info button {
+      background-color: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 10px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .payy-info button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #555;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .footer-section h4 {
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 5px;
+    }
+
+    .footer-section ul li a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="#">متجر أنمي باور</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="store.html">البييات</a></li>
+      <li><a href="https://www.facebook.com/Central.Power.Bank">اتصل بنا</a></li>
+    </ul>
+  </nav>
+
+  <button class="add-button" onclick="addNewPayy()">إضافة منتج جديد</button>
+
+  <section class="payys" id="payyContainer"></section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>عن الموقع</h4>
+        <ul>
+          <li><a href="features.html">من نحن</a></li>
+          <li><a href="ASK.html">سياسة الخصوصية</a></li>
+          <li><a href="https://www.facebook.com/groups/anime.power.ca/?ref=share&mibextid=NSMWBT">مجموعة باور</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="information.html">معلومات</a></li>
+          <li><a href="https://www.facebook.com/Central.Power.Bank">اتصل بنا</a></li>
+          <li><a href="https://www.facebook.com/share/16gaZVkgoY/">مديرة البنك</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const defaultPayys = [
+      { name: "vip+ بطاقة الشخصيات المهمة ",description: "vip+ بطاقة الشخصيات المهمة في الكازينو",price: "25.000 S.K", image: "a01.jpg" },
+      { name: "vip بطاقة الشخصيات المهمة ",description: "في الكاوينو vip بطاقة الشخصيات المهمة ", price:"20.000 s.k" ,image: "a02.jpg" },
+      { name: "بطاقة انتقال ذهبية",description: "بطاقة انتقال فضية ينقل العضو من فريق ال اخر في قترة التصنيف",price:"5.000 S.K" , image: "a03.jpg" },
+      { name:"بطاقة انتقال فضية",description: "بطاقة انتقال فضية ينقل العضو من فريق ال اخر",price: "3.000 S.K", image: "a04.jpg" },
+      { name:" بطاقة زيارة برونزية", description:"بطاقة زيارة 24 ساعة تسمح للعضو بزيارة اي فريق ",price:"3.000 s.k" ,image: "a05.jpg" },
+      { name: " بطاقة زيارة فضية",description: "بطاقة زيارة 48 ساعة تسمح للعضو بزيارة اي فريق ",price:"4.000 S.K" , image: "a06.jpg" },
+      { name: " بطاقة زيارة ذهبية",description: "بطاقة زيارة 72 ساعة تسمح للعضو بزيارة اي فريق ",price: "5.000 S.K", image: "a07.jpg" },
+      { name: " بطاقة انضمام", description:"بطاقة انضمام عضو بدون فريق الي قريق عند عدم وجود تصنيف سعرها للعضو 15 الف سويكا وسعرها من خزينة الفريق 10الاف سويكا",price:"15.000 s.k" ,image: "a08.jpg" },
+      { name: "بطاقة انضمام في فترة التصنيف",description: "بطاقة انضمام عضو بدون فريق الي قريق عند عدم وجود تصنيف سعرها للعضو 20 الف سويكا وسعرها من خزينة الفريق 10 الف سويكا",price:"20.000 S.K" , image: "a09.jpg" },
+    ];
+
+    function loadPayys() {
+      const saved = JSON.parse(localStorage.getItem("animePayys") || "[]");
+      const all = [...defaultPayys, ...saved];
+      const container = document.getElementById("payyContainer");
+      container.innerHTML = "";
+      all.forEach(payy => {
+        const card = document.createElement("div");
+        card.className = "payy-card";
+        const query = `payy.html?image=${encodeURIComponent(payy.image)}&name=${encodeURIComponent(payy.name)}&desc=${encodeURIComponent(payy.description)}&price=${encodeURIComponent(payy.price)}`;
+        card.innerHTML = `
+          <img src="${payy.image}" alt="${payy.name}" />
+          <div class="payy-info">
+            <h3>${payy.name}</h3>
+            <p>${payy.description}</p>
+            <div class="price">${payy.price}</div>
+            <a href="${query}">
+              <button>شراء</button>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addNewPayy() {
+      const name = prompt("اسم المنتج:");
+      if (!name) return;
+      const description = prompt("الوصف:");
+      if (!description) return;
+      const price = prompt("السعر:");
+      if (!price) return;
+      const image = prompt("اسم الصورة (مثال: a04.jpg):");
+      if (!image) return;
+
+      const newPayy = { name, description, price, image };
+      const existing = JSON.parse(localStorage.getItem("animePayys") || "[]");
+      existing.push(newPayy);
+      localStorage.setItem("animePayys", JSON.stringify(existing));
+      loadPayys();
+    }
+
+    loadPayys();
+  </script>
+</body>
+</html>
